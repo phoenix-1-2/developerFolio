@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/vendor/aos.css">
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/vendor/jquery.fancybox.min.css">
-    
+    åå
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
@@ -625,7 +625,7 @@
 
        <div class="row">
          
-         <div class="col-md-6">
+         <div class="col-md-7">
               <form action="" method="POST" class="form-outline-style-v1" id="contactForm" autocomplete="off">
                 <div class="form-group row mb-0">
 
@@ -646,17 +646,20 @@
                     <div class="col-md-12 d-flex align-items-center">
                       <input type="submit" class="btn btn-outline-pill btn-custom-light mr-3" value="Send Message">
                       <span class="submitting"></span>
+                      <div id = "status"></div>
                     </div>
                 </div>
+
+                
+
               </form>
-              <div id="form-message-warning" class="mt-4"></div> 
-              <div id="form-message-success">
-                Your message was sent, thank you!
-              </div>
+              
+
+              
 
             </div>
          
-       <div class="col-md-6 ">
+       <div class="col-md-5 text-center" >
           <div class= "contact-info-v1">
             <div class="gsap-reveal d-block">
               <span class="d-block contact-info-label">Email</span>
@@ -697,6 +700,7 @@
                 <li><a href="https://www.instagram.com/nikhil__bhasin/"><i class="fab fa-instagram fa-4x"></i></a></li>
                 <li><a href="https://api.whatsapp.com/send?phone=9315871663"><i class="fab fa-whatsapp fa-4x"></i></a></li>
                 <li><a href="https://github.com/phoenix-1-2"><i class="fab fa-github fa-4x"></i></a></li>
+                <li><a href="mailto:someone@mozilla.org?Subject=Greetings!! Nikhil" target="_blank"> <i class="fas fa-envelope fa-4x"></i> </a></li>
                 <li><a href="https://www.linkedin.com/in/nikhil1204/"><i class="fab fa-linkedin fa-4x"></i></a></li>
               </ul>
 
@@ -726,6 +730,85 @@
       <div class="site-loader"></div>
     </div>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+      
+    <script> 
+        var firebaseConfig = {
+    apiKey: "AIzaSyDzUL6l9ceuncsrxVDBrlfjWGZH2kbGFGs",
+    authDomain: "contact-info-1eaa5.firebaseapp.com",
+    projectId: "contact-info-1eaa5",
+    storageBucket: "contact-info-1eaa5.appspot.com",
+    messagingSenderId: "609146899166",
+    appId: "1:609146899166:web:054e0258bb7d072697504f",
+    measurementId: "G-RK5XPMTGLL"
+  };
+  
+        firebase.initializeApp(firebaseConfig); 
+  
+        var messagesRef = firebase.database().ref('ContactDetails/'); 
+          
+        document.getElementById('contactForm').addEventListener('submit', submitForm); 
+  
+        function submitForm(e) { 
+            e.preventDefault(); 
+  
+            // Get values 
+            var name = getInputVal('name'); 
+            var email = getInputVal('email'); 
+            var message = getInputVal('message'); 
+  
+            saveMessage(name, email,message); 
+        } 
+  
+        // Function to get get form values 
+        function getInputVal(id) { 
+            return document.getElementById(id).value; 
+        } 
+        function setInputVal(id) { 
+            // return document.getElementById(id) = 
+        } 
+  
+        // Save message to firebase 
+        function saveMessage(name, email,message) { 
+            var newMessageRef = messagesRef.push(); 
+            newMessageRef.set({ 
+                name: name, 
+                email: email,
+                message:message
+            }).then(()=>
+            {
+            document.getElementById('status').innerHTML =
+
+              " <p style='font-size:18px; font-weight:500; '> Hello," + name  +" .Thank you for contacting me. <br> I will contact you soon. </p>"
+            document.getElementById('status').style.color= "green";
+            document.getElementById('status').style.fontWeight = "500";
+
+            setInputVal('name');
+            setInputVal('email');
+            setInputVal('message');
+
+            }
+            
+            ).catch(()=>
+            {
+            document.getElementById('status').innerHTML =
+             "There is some issue !! Please Try again"
+             document.getElementById('status').style.color= "red";
+            document.getElementById('status').style.fontWeight = "500";
+            document.getElementById('status').style.fontSize = "20";
+            }
+            ) ; 
+        } 
+    </script>
+    
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
 
