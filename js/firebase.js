@@ -40,7 +40,8 @@ function saveMessage(name, email, message) {
     newMessageRef.set({
         name: name,
         email: email,
-        message: message
+        message: message,
+        datetime: new Date().toString()
     }).then(() => {
         document.getElementById('status').innerHTML =
             " <p style='font-size:18px; font-weight:500; '> Hello," + name + " .Thank you for contacting me. <br> I will contact you soon. </p>"
