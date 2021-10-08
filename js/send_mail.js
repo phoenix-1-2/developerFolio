@@ -21,9 +21,10 @@ function getInputVal(id) {
 // Save message to firebase 
 function saveMessage(name, email, message) {
     var formdata = new FormData();
-    formdata.append("name", "Rahul");
-    formdata.append("email", "nikhil.bhasin124@gmail.com");
-    formdata.append("message", "Hey");
+    
+    formdata.append("name", name);
+    formdata.append("email", email);
+    formdata.append("message", message);
 
     var requestOptions = {
         method: 'POST',
