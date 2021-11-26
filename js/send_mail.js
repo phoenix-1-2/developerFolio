@@ -49,6 +49,13 @@ function saveMessage(name, email, message) {
                 document.getElementById('status').style.fontSize = "18";
             
             }
+            else if (statusCode === 400) {
+                document.getElementById('status').innerHTML =
+                "Profanity language not allowed."
+            document.getElementById('status').style.color = "red";
+            document.getElementById('status').style.fontWeight = "500";
+            document.getElementById('status').style.fontSize = "18";
+            }
             else {
                 document.getElementById('status').innerHTML =
                 "There is some issue !! Please Try again"
