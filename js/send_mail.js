@@ -3,6 +3,11 @@ URL = "https://developerfolio-server.herokuapp.com/apis/contact"
 document.getElementById('contactForm').addEventListener('submit', submitForm);
 
 function submitForm(e) {
+
+    // loads a spinner
+    document.getElementById('submitButton').value = "Submitting..."
+    // document.getElementById('submitButton').style.color = "green";
+
     e.preventDefault();
 
     // Get values 
@@ -21,7 +26,7 @@ function getInputVal(id) {
 // Save message to firebase 
 function saveMessage(name, email, message) {
     var formdata = new FormData();
-    
+
     formdata.append("name", name);
     formdata.append("email", email);
     formdata.append("message", message);
@@ -40,6 +45,9 @@ function saveMessage(name, email, message) {
                     " <p style='font-size:18px; font-weight:500; '> Hello," + name + " .Thank you for contacting me. <br> I will contact you soon. </p>"
                 document.getElementById('status').style.color = "green";
                 document.getElementById('status').style.fontWeight = "500";
+                document.getElementById('submitButton').value = "Submitted"
+                document.getElementById('submitButton').style.color = "green";
+                document.getElementById('submitButton').toggleAttribute("disabled", true);
             }
             else if (statusCode === 307) {
                 document.getElementById('status').innerHTML =
@@ -47,21 +55,28 @@ function saveMessage(name, email, message) {
                 document.getElementById('status').style.color = "red";
                 document.getElementById('status').style.fontWeight = "500";
                 document.getElementById('status').style.fontSize = "18";
-            
+                document.getElementById('submitButton').value = "Already Submitted"
+                document.getElementById('submitButton').style.color = "red";
+                document.getElementById('submitButton').toggleAttribute("disabled", true);
+
             }
             else if (statusCode === 400) {
                 document.getElementById('status').innerHTML =
-                "Profanity language not allowed."
-            document.getElementById('status').style.color = "red";
-            document.getElementById('status').style.fontWeight = "500";
-            document.getElementById('status').style.fontSize = "18";
+                    "Profanity language not allowed."
+                document.getElementById('status').style.color = "red";
+                document.getElementById('status').style.fontWeight = "500";
+                document.getElementById('status').style.fontSize = "18";
+                document.getElementById('submitButton').value = "Send Message"
+                document.getElementById('submitButton').style.color = "white";
             }
             else {
                 document.getElementById('status').innerHTML =
-                "There is some issue !! Please Try again"
-            document.getElementById('status').style.color = "red";
-            document.getElementById('status').style.fontWeight = "500";
-            document.getElementById('status').style.fontSize = "18";
+                    "There is some issue !! Please Try again"
+                document.getElementById('status').style.color = "red";
+                document.getElementById('status').style.fontWeight = "500";
+                document.getElementById('status').style.fontSize = "18";
+                document.getElementById('submitButton').value = "Send Message"
+                document.getElementById('submitButton').style.color = "white";
             }
         })
         .catch(error => {
@@ -70,5 +85,7 @@ function saveMessage(name, email, message) {
             document.getElementById('status').style.color = "red";
             document.getElementById('status').style.fontWeight = "500";
             document.getElementById('status').style.fontSize = "18";
+            document.getElementById('submitButton').value = "Send Message"
+            document.getElementById('submitButton').style.color = "white";
         })
 }
