@@ -37,7 +37,7 @@ function saveMessage(name, email, message) {
         redirect: 'follow'
     };
 
-    fetch("https://developerfolio-server.herokuapp.com/apis/contact", requestOptions)
+    fetch("https://developerfolio-server.onrender.com/apis/contact", requestOptions)
         .then(response => {
             let statusCode = response.status;
             if (statusCode === 201) {
