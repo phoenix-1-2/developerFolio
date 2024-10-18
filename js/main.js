@@ -5,56 +5,6 @@ AOS.init({
 	offset: -100
 });
 
-document.getElementById('collapseReadMore1').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore1', 'collapseReadLess1');
-})
-document.getElementById('collapseReadLess1').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore1', 'collapseReadLess1');
-})
-
-document.getElementById('collapseReadMore2').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore2', 'collapseReadLess2');
-})
-document.getElementById('collapseReadLess2').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore2', 'collapseReadLess2');
-})
-
-document.getElementById('collapseReadMore3').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore3', 'collapseReadLess3');
-})
-document.getElementById('collapseReadLess3').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore3', 'collapseReadLess3');
-})
-
-document.getElementById('collapseReadMore4').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore4', 'collapseReadLess4');
-})
-document.getElementById('collapseReadLess4').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore4', 'collapseReadLess4');
-})
-
-document.getElementById('collapseReadMore5').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore5', 'collapseReadLess5');
-})
-document.getElementById('collapseReadLess5').addEventListener('click', function (e) {
-	toggleRead('collapseReadMore5', 'collapseReadLess5');
-})
-
-function toggleRead(className1, className2) {
-	var element = document.getElementById(className1);
-	if (element.style.display === "none") {
-		element.style.display = "block";
-	} else {
-		element.style.display = "none";
-	}
-	var readLessElement = document.getElementById(className2);
-	if (readLessElement.style.display === "none") {
-		readLessElement.style.display = "block";
-	} else {
-		readLessElement.style.display = "none";
-	}
-}
-
 jQuery(function ($) {
 
 	'use strict';
